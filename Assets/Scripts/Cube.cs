@@ -1,6 +1,9 @@
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Clicker))]
+
 public class Cube : MonoBehaviour
 {
     public event Action<Cube> Removed;
