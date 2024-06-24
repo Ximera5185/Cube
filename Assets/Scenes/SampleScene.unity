@@ -256,8 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5e5d06066a8844a8c214b2fedc4631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 884690589}
-  _cube: {fileID: 4461988551677906041, guid: 17801449aa46feb41a35d14b965ce539, type: 3}
+  _cube: {fileID: -5312431310045078983, guid: 17801449aa46feb41a35d14b965ce539, type: 3}
   _exsplosionRadius: 3
   _explosionForce: 400
 --- !u!1 &476174116
@@ -385,11 +384,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!20 &884690589 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8788337378420207968, guid: 602318cad241a9f44ba7812ccf660d9d, type: 3}
-  m_PrefabInstance: {fileID: 42417984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
