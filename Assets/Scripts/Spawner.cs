@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Cube _cube;
-
-    [SerializeField] private float _exsplosionRadius;
-
-    [SerializeField] private float _explosionForce;
-
-    private ColorGenerator _colorGenerater;
-
-    private RandomNumberGenerator _randomNamber;
-
     private const float DivisorNumber = 2;
+
+    [SerializeField] private Cube _cube;
+    [SerializeField] private float _exsplosionRadius;
+    [SerializeField] private float _explosionForce;
+    private ColorGenerator _colorGenerater;
+    private RandomNumberGenerator _randomNamber;
 
     private void Awake()
     {
