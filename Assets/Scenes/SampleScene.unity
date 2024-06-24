@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a5e5d06066a8844a8c214b2fedc4631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cube: {fileID: -5312431310045078983, guid: 17801449aa46feb41a35d14b965ce539, type: 3}
+  _cube: {fileID: 2024541077915464462, guid: 17801449aa46feb41a35d14b965ce539, type: 3}
   _exsplosionRadius: 3
   _explosionForce: 400
 --- !u!1 &476174116
