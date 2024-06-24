@@ -17,5 +17,5 @@ public class ColorGenerator
     {
          return _colors [Random.Range(0, _colors.Count)];
     }
-    ///
+
 }
