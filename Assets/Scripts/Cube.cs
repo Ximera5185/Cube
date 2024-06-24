@@ -3,14 +3,15 @@ using System;
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(Clicker))]
+[RequireComponent(typeof(Rigidbody))]
 
 public class Cube : MonoBehaviour
 {
-    public event Action<Cube> Removed;
-
     private MeshRenderer _renderer;
-
     private Clicker _clicker;
+    private Rigidbody _rigidbody;
+
+    public event Action<Cube> Removed;
 
     public float SeparationChance { get; private set; } 
 
@@ -19,6 +20,8 @@ public class Cube : MonoBehaviour
         _renderer = GetComponent<MeshRenderer>();
 
         _clicker = GetComponent<Clicker>();
+
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -31,14 +34,16 @@ public class Cube : MonoBehaviour
         _clicker.Clicked -= OnClicked;
     }
 
-    public void SetColor(Color color)
+    public void Explode(float explosionForce, float exsplosionRadius) 
     {
-        _renderer.material.color = color;
+        _rigidbody.AddExplosionForce(explosionForce, transform.position, exsplosionRadius);
     }
 
-    public void SetChance(float chance) 
+    public void Init(float chanse, Color color)
     {
-        SeparationChance = chance;
+        SeparationChance = chanse;
+
+        _renderer.material.color = color;
     }
 
     private void OnClicked()

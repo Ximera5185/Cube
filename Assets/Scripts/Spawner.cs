@@ -64,14 +64,12 @@ public class Spawner : MonoBehaviour
         {
             Cube cube = Instantiate(_cube, position, Quaternion.identity);
 
-            cube.SetChance(chanse);
-
             cube.transform.localScale = currentScale;
 
-            cube.SetColor(_colorGenerater.GetRandomColor());
-
-            cube.GetComponent<Rigidbody>().AddExplosionForce(_explosionForce, cube.transform.position, _exsplosionRadius);
-
+            cube.Init(chanse, _colorGenerater.GetRandomColor());
+            
+            cube.Explode(_explosionForce, _exsplosionRadius);
+           
             cube.Removed += OnRemoved;
         }
     }
