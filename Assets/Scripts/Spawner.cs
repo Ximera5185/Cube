@@ -46,6 +46,12 @@ public class Spawner : MonoBehaviour
         {
             SpawnCube(currentTransform.position, scale, chance);
         }
+        else
+        {
+           //float radius = cube.transform.localScale * 2f;
+
+            cube.Explode(_explosionForce, _exsplosionRadius);
+        }
 
         cube.Removed -= OnRemoved;
     }
@@ -63,8 +69,8 @@ public class Spawner : MonoBehaviour
             cube.transform.localScale = currentScale;
 
             cube.Init(chanse, _colorGenerater.GetRandomColor());
-            
-            cube.Explode(_explosionForce, _exsplosionRadius);
+
+            cube.AddForse(_explosionForce, _exsplosionRadius);
            
             cube.Removed += OnRemoved;
         }
