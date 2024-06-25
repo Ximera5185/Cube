@@ -15,6 +15,7 @@ public class Cube : MonoBehaviour
     public event Action<Cube> Removed;
 
     public float SeparationChance { get; private set; }
+    public int Multiplier { get; private set; } = 1;
 
     private void Awake()
     {
@@ -65,11 +66,14 @@ public class Cube : MonoBehaviour
     {
         _rigidbody.AddExplosionForce(explosionForce, transform.position, exsplosionRadius);
     }
-    public void Init(float chanse, Color color)
+
+    public void Init(float chanse, Color color, int multiplier)
     {
         SeparationChance = chanse;
 
         _renderer.material.color = color;
+
+        Multiplier = multiplier;
     }
 
     private void OnClicked()

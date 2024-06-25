@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
 
         Vector3 startScaleCube = new Vector3(startScaleX, startScaleY, startScaleZ);
 
-        SpawnCube(startPositionCube, startScaleCube, separationChance);
+        SpawnCube(startPositionCube, startScaleCube, separationChance,1);
     }
 
     private void OnRemoved(Cube cube)
@@ -44,20 +44,21 @@ public class Spawner : MonoBehaviour
 
         if (cube.SeparationChance >= _randomNamber.GetRandomNamber(minValueChanse, maxValueChanse))
         {
-            SpawnCube(currentTransform.position, scale, chance);
+            SpawnCube(currentTransform.position, scale, chance, cube.Multiplier);
         }
         else
         {
-           //float radius = cube.transform.localScale * 2f;
+            int multiplier = cube.Multiplier;
 
-            cube.Explode(_explosionForce, _exsplosionRadius);
+            cube.Explode(_explosionForce * multiplier , _exsplosionRadius * multiplier);
         }
 
         cube.Removed -= OnRemoved;
     }
 
-    private void SpawnCube(Vector3 position, Vector3 currentScale, float chanse)
+    private void SpawnCube(Vector3 position, Vector3 currentScale, float chanse, int multiplier)
     {
+        int minMultiplierNumber = 2;
         int minValueCubes = 2;
         int maxValueCubes = 7;
         int quantityCubes = _randomNamber.GetRandomNamber(minValueCubes, maxValueCubes);
@@ -68,7 +69,7 @@ public class Spawner : MonoBehaviour
 
             cube.transform.localScale = currentScale;
 
-            cube.Init(chanse, _colorGenerater.GetRandomColor());
+            cube.Init(chanse, _colorGenerater.GetRandomColor(), multiplier * minMultiplierNumber);
 
             cube.AddForse(_explosionForce, _exsplosionRadius);
            
