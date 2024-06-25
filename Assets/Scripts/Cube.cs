@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(Clicker))]
@@ -13,7 +14,8 @@ public class Cube : MonoBehaviour
 
     public event Action<Cube> Removed;
 
-    public float SeparationChance { get; private set; } 
+    public float SeparationChance { get; private set; }
+    public int Multiplier { get; private set; } = 1;
 
     private void Awake()
     {
@@ -34,16 +36,44 @@ public class Cube : MonoBehaviour
         _clicker.Clicked -= OnClicked;
     }
 
-    public void Explode(float explosionForce, float exsplosionRadius) 
+    private List<Rigidbody> GetExplodableObjects(float exsplosionRadius)
+    {
+        Collider [] hits = Physics.OverlapSphere(transform.position, exsplosionRadius);
+
+        List<Rigidbody> cubes = new List<Rigidbody>();
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.attachedRigidbody != null)
+            {
+                cubes.Add(hit.attachedRigidbody);
+            }
+        }
+
+        return cubes;
+    }
+
+    public void Explode(float explosionForce, float exsplosionRadius)
+    {
+        
+        foreach (Rigidbody exploDableObject in GetExplodableObjects(exsplosionRadius))
+        {
+            exploDableObject.AddExplosionForce(explosionForce, transform.position, exsplosionRadius);
+        }
+    }
+
+    public void AddForse(float explosionForce, float exsplosionRadius) 
     {
         _rigidbody.AddExplosionForce(explosionForce, transform.position, exsplosionRadius);
     }
 
-    public void Init(float chanse, Color color)
+    public void Init(float chanse, Color color, int multiplier)
     {
         SeparationChance = chanse;
 
         _renderer.material.color = color;
+
+        Multiplier = multiplier;
     }
 
     private void OnClicked()
